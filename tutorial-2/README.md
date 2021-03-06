@@ -157,11 +157,11 @@ setelah itu jangan lupa untuk menset password dari user dengan perintah
 
 `passwd user02`
 
-![Gambar-31](image/gambar31.png)
+![Gambar-update1](image/update1.png)
 
 Agar kita dapat menjalankan perintah sudo privilege tanpa password dapat kita tambahkan scrpit berikut ini pada file /etc/sudoers
 
-![Gambar-update1](image/update1.png)
+![Gambar-31](image/gambar31.png)
 
 Mari kita coba login ke user02 dan mencek homedirnya
 
