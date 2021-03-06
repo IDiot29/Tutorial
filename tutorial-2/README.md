@@ -137,49 +137,45 @@ jika kita cek menggunakan perintah `df –h` maka sudah termount.
 ![Gambar-23](image/gambar23.png)
 
 ## Create New Username
-Pertama buat sebuah user baru dengan perintah
+Untuk menambahkan sebuah user baru kita dapat menggunakan perintah useradd. Dengan menggunakan perintah ini, kita juga bisa mengkonfigurasikan user baru saat menambahkannya, seperti letak homedir dan shell yang digunakan. 
 
-`adduser user02`
+Ketikkan perintah berikut
 
-Lalu berikan password pada user baru dengan perintah
+`useradd -m -d /mnt/new-disk/user02 -G wheel -s /bin/bash user02`
+
+fungsi fungsi dari parameter diatas adalah:
+
+`-m` untuk membuat homedir dari user
+
+`-d` untuk menspesifikan lokasi dari homedir
+
+`-G` untuk memasukkan user ke group, disini kita masukkan ke grup wheel unuk membuat user menjadi sudoer
+
+`-s` untuk menspesifikan jenis shell yang digunakan user
+
+setelah itu jangan lupa untuk menset password dari user dengan perintah
 
 `passwd user02`
 
-![Gambar-24](image/gambar24.png)
-
-Untuk menambahkan user baru kita manjadi sudoer ketikkan perintah visudo. Maka akan membuka file /etc/sudoer .  Lalu tambahkan script berikut.
-
-![Gambar-25](image/gambar25.png)
-
-Lalu kita coba beralih ke user baru tersebut dan coba menjalankan perintah dengan sudo privilege
-
-![Gambar-26](image/gambar26.png)
-
-Coba kita cek shell yang digunakan oleh user02. 
-
-![Gambar-27](image/gambar27.png)
-
-user02 sudah menggunakan shell bash sebagai shell default, namun jika ingin mengubah default shell dari user bisa deengan cara mengubahnya dengan mengedit script pada /etc/passwd.
-
-![Gambar-28](image/gambar28.png)
-
-Mari kita coba pindahkan home direktori dari user02 kita, dengan perintah
-
-`usermod -m -d /mnt/new-disk/user02 user02`
-
-![Gambar-29](image/gambar29.png)
-
-Kita sudah berhasil memindahkannya.
-
-Kita pastinya tetap masih bisa mengakses server dengan ssh menggunakan private key dari user01 kita yang terdahulu. Bahakan kita bisa beralih ke user02.
-
-![Gambar-30](image/gambar30.png)
-
-Agar kita dapat menjalankan perintah sudo privilige tanpa password dapat kita tambahkan scrpit berikut ini pada file /etc/sudoers
-
 ![Gambar-31](image/gambar31.png)
 
-Kita coba jalankan perintah menggunakan perintah sudo. Berhasil dimana kita tidak diminta password saat menjalankan perintah sudo privilige.
+Agar kita dapat menjalankan perintah sudo privilege tanpa password dapat kita tambahkan scrpit berikut ini pada file /etc/sudoers
+
+![Gambar-update1](image/update1.png)
+
+Mari kita coba login ke user02 dan mencek homedirnya
+
+![Gambar-update2](image/update2.png)
+
+Kemudian jenis bash yang digunakan
+
+![Gambar-update3](image/update3.png)
+
+Dan user baru kita buat tadi juga sudah sudoer
+
+![Gambar-update4](image/update4.png)
+
+Kita coba jalankan perintah menggunakan perintah sudo. Berhasil dimana kita tidak diminta password saat menjalankan perintah sudo privilege.
 
 ![Gambar-32](image/gambar32.png)
 
@@ -207,7 +203,7 @@ Jadi, contohnya, jika Anda ingin mengatur permission file1.txt menjadi:
 
  ![Gambar-34](image/gambar34.png)
 
-**chown**- erintah ini digunakan untuk mengganti owners dari file/folder.
+**chown**- perintah ini digunakan untuk mengganti owners dari file/folder.
 
 Tadinya file1.txt merupkan file yang ownernya root. Kita akan ubah owner file1.txt menjadi user02
 perintahnya adalah
@@ -222,5 +218,4 @@ perintahnya adalah
 - https://www.tecmint.com/manage-and-create-lvm-parition-using-vgcreate-lvcreate-and-lvextend/
 - https://www.electronicdesign.com/industrial-automation/article/21804944/whats-the-difference-between-linux-ext-xfs-and-btrfs-filesystems
 - https://id.if-koubou.com/articles/how-to/which-linux-file-system-should-you-use.html
-- https://phoenixnap.com/kb/how-to-create-add-sudo-user-centos
-- https://stackoverflow.com/questions/20797819/command-to-change-the-default-home-directory-of-a-user
+- https://linuxize.com/post/how-to-create-users-in-linux-using-the-useradd-command/
